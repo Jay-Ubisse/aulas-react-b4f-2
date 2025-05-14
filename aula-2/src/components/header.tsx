@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
+
+const linkStyles = "hover:text-cyan-300";
 
 export const Header = () => {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
@@ -11,12 +14,40 @@ export const Header = () => {
           {isUserAuthenticated ? "| Coronel Ubisse" : ""}
         </span>
       </h1>
-      <button
-        className="bg-white rounded-md text-cyan-600 px-4 py-2 font-medium"
-        onClick={() => setIsUserAuthenticated(!isUserAuthenticated)}
-      >
-        {isUserAuthenticated ? "Terminar Sessão" : "Iniciar Sessão"}
-      </button>
+      <div className="flex items-center gap-16">
+        <nav className="space-x-8 text-lg">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `${linkStyles} ${isActive ? "text-cyan-300" : ""}`
+            }
+          >
+            Início
+          </NavLink>
+          <NavLink
+            to="/courses"
+            className={({ isActive }) =>
+              `${linkStyles} ${isActive ? "text-cyan-300" : ""}`
+            }
+          >
+            Cursos
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `${linkStyles} ${isActive ? "text-cyan-300" : ""}`
+            }
+          >
+            Sobre
+          </NavLink>
+        </nav>
+        <button
+          className="bg-white rounded-md text-cyan-600 px-4 py-2 font-medium"
+          onClick={() => setIsUserAuthenticated(!isUserAuthenticated)}
+        >
+          {isUserAuthenticated ? "Terminar Sessão" : "Iniciar Sessão"}
+        </button>
+      </div>
     </header>
   );
 };
