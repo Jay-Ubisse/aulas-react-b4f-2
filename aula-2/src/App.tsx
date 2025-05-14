@@ -1,11 +1,9 @@
-import { Courses } from "./components/courses";
-import { Header } from "./components/header";
+import { Home } from "./pages/home";
 
 export const App = () => {
   return (
     <>
-      <Header />
-      <Courses />
+      <Home />
     </>
   );
 };
