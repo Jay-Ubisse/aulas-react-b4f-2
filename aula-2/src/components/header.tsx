@@ -40,6 +40,14 @@ export const Header = () => {
           >
             Sobre
           </NavLink>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `${linkStyles} ${isActive ? "text-cyan-300" : ""}`
+            }
+          >
+            Contacto
+          </NavLink>
         </nav>
         <button
           className="bg-white rounded-md text-cyan-600 px-4 py-2 font-medium"

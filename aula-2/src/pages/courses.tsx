@@ -14,19 +14,31 @@ export const Courses = () => {
     setCourses(coursesData);
   }, [refresh]);
 
+  function handleCourseSearch(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const search = form.get("search") as string;
+    const filterdCourses = coursesData.filter((course) =>
+      course.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    setCourses(filterdCourses);
+  }
+
   return (
     <>
       <Header />
       <main className="min-h-screen p-10">
         <div className="flex justify-between items-center mb-10">
-          <div className="flex items-center">
+          <form onSubmit={handleCourseSearch} className="flex items-center">
             <input
               type="text"
+              name="search"
               placeholder="Procurar curso..."
               className="outline-1 outline-cyan-700 px-4 py-2 rounded-md"
             />
             <MagnifyingGlass className="text-cyan-700 -ml-8" size={24} />
-          </div>
+          </form>
           <button
             className=" bg-cyan-700 hover:bg-cyan-600 cursor-pointer text-white px-4 py-2 rounded-md"
             onClick={() => setRefresh(refresh + 1)}
